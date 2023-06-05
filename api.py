@@ -4,7 +4,7 @@ from config import CREDENTIALS
 
 app = Flask(__name__)
 
-@app.route('/books', methods=['GET'])
+@app.route('/book', methods=['GET'])
 def get_books():
     if request.method == 'GET':
         try:
@@ -15,7 +15,7 @@ def get_books():
                                 password=CREDENTIALS['PASSWORD']
                                 )
             c = db.cursor()
-            c.execute('SELECT * FROM book')
+            c.execute('SELECT * FROM Category')
             
             res = c.fetchall()
             
@@ -38,7 +38,7 @@ def get_book(id):
                                 password=CREDENTIALS['PASSWORD']
                                 )
             c = db.cursor()
-            c.execute(f'SELECT * FROM book WHERE book_number={id}')
+            c.execute(f'SELECT * FROM books WHERE book_number={id}')
             
             res = c.fetchone()
             
